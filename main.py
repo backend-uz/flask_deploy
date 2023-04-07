@@ -1,4 +1,10 @@
 from flask import Flask, request
+import os
+import telegram
+
+TOKEN = "5661659754:AAGS37bnekJLOCeHHvmh2KdIOo8uNZG_kyM"
+
+bot = telegram.Bot(TOKEN)
 
 app = Flask(__name__)
 
@@ -6,8 +12,16 @@ app = Flask(__name__)
 def main():
     return "DEPLYMENT"
 
-@app.route("/")
+@app.route("/webhook", methods = ["POST", "GET"])
 def home():
-    return "HOME PAGE"
+    if request.method == "POST":
+        chat_id = 5575549228
+        bot.sendMessage(chat_id, "Hello")
+
+        return "send Message"
+    else:
+        return "Not allowed GET request"
+    
+    
 if __name__ == "__main__":
     app.run(debug=True)
