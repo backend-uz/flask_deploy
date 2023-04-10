@@ -15,6 +15,7 @@ def main():
 @app.route("/webhook", methods = ["POST", "GET"])
 def home():
     if request.method == "POST":
+        print(request.get_json())
         chat_id = 5575549228
         bot.sendMessage(chat_id, "Hello")
 
@@ -22,6 +23,6 @@ def home():
     else:
         return "Not allowed GET request"
     
-    
+
 if __name__ == "__main__":
     app.run(debug=True)
