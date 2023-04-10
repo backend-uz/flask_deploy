@@ -1,7 +1,9 @@
 from flask import Flask, request
+from telegram import Update
+from telegram.ext import Dispatcher, Updater, MessageHandler, CommandHandler, Filters
 import os
 import telegram
-
+from handlers import start, echo
 TOKEN = "5661659754:AAGS37bnekJLOCeHHvmh2KdIOo8uNZG_kyM"
 
 bot = telegram.Bot(TOKEN)
@@ -15,14 +17,15 @@ def main():
 @app.route("/webhook", methods = ["POST", "GET"])
 def home():
     if request.method == "POST":
-        update = request.get_json()
+        dp = Dispatcher(bot, None, workers=0)
 
-        chat_id = update['message']['chat']['id']
-        text = update['message']['text']
+        data = request.get_json(force=True)
+        update = Update.de_json(data, bot)
 
-        bot.sendMessage(chat_id, text)
+        dp.add_handler(CommandHandler("start", start))
+        dp.add_handler(MessageHandler(Filters.text, echo))
 
-        return "send Message"
+        dp.process_update(update)
     else:
         return "Not allowed GET request"
     
