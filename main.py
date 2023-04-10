@@ -26,6 +26,8 @@ def home():
         dp.add_handler(MessageHandler(Filters.text, echo))
 
         dp.process_update(update)
+
+        return "OK"
     else:
         return "Not allowed GET request"
     
