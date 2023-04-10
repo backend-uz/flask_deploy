@@ -7,6 +7,11 @@ def start(update: Update, context: CallbackContext) -> None:
     chat_id = update.message.chat.id
     bot.sendMessage(chat_id, "Hi!")
 
+def help(update: Update, context: CallbackContext) -> None:
+    bot = context.bot
+    chat_id = update.message.chat.id
+    bot.sendMessage(chat_id, "Can I help you?")
+
 def echo(update: Update, context: CallbackContext) -> None:
     bot = context.bot
     chat_id = update.message.chat.id

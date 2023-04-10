@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import Dispatcher, Updater, MessageHandler, CommandHandler, Filters
 import os
 import telegram
-from handlers import start, echo
+from handlers import start, echo, help
 TOKEN = "5661659754:AAGS37bnekJLOCeHHvmh2KdIOo8uNZG_kyM"
 
 bot = telegram.Bot(TOKEN)
@@ -23,6 +23,7 @@ def home():
         update = Update.de_json(data, bot)
 
         dp.add_handler(CommandHandler("start", start))
+        dp.add_handler(CommandHandler('help', help))
         dp.add_handler(MessageHandler(Filters.text, echo))
 
         dp.process_update(update)
