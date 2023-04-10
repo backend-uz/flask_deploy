@@ -17,7 +17,7 @@ def home():
     if request.method == "POST":
         print(request.get_json())
         chat_id = 5575549228
-        bot.sendMessage(chat_id, "Hello")
+        bot.sendMessage(chat_id, "Hello, 123")
 
         return "send Message"
     else:
