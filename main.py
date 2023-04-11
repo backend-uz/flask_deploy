@@ -4,7 +4,7 @@ from telegram.ext import Dispatcher, Updater, MessageHandler, CommandHandler, Fi
 import os
 import telegram
 from handlers import start, echo, help
-TOKEN = "5661659754:AAGS37bnekJLOCeHHvmh2KdIOo8uNZG_kyM"
+TOKEN = "1950937652:AAEKFVSEwjT55RYro5X-3ILwKXnh_s6ThPU"
 
 bot = telegram.Bot(TOKEN)
 
@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route("/api")
 def main():
-    return "DEPLYMENT"
+    return "DEPLOYMENT"
 
 @app.route("/webhook", methods = ["POST", "GET"])
 def home():
